@@ -12,7 +12,7 @@ var ventes = [
 
 { produit: "Chaussures", montant: 20000, client: "Client B" },
 
-{ produit: "Chemises", montant: 15000, client: "Client C" },
+{ produit: "Chemises", montant: 150000, client: "Client C" },
 
 { produit: "Chaussures", montant: 30000, client: "Client A" },
 
@@ -87,8 +87,23 @@ totalvente(ventes)
 
     // Identifiez le produit le plus vendu
 function produitLePlusVendue(array){
-   let new_array = array.sort((a,b) => b.montant - a.montant)
-console.log(`Produit le plus vendu : ${new_array[0].produit} \n`)
+    let tableau_produit =[]
+    for(let item of array){
+         let produit_vendue = tableau_produit.find(index => index.produit === item.produit)
+        if(produit_vendue){
+            produit_vendue.montant +=item.montant
+        }else{
+            tableau_produit.push({ 
+                produit: item.produit,
+                montant: item.montant
+            })
+        }
+        console.log(tableau_produit)
+    }
+    
+   
+//    let new_array = array.sort((a,b) => b.montant - a.montant)
+// console.log(`Produit le plus vendu : ${new_array[0].produit} \n`)
 }
 produitLePlusVendue(ventes)
 
